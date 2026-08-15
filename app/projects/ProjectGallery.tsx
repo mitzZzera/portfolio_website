@@ -1,0 +1,19 @@
+"use client";
+import { FormEvent, useEffect, useState } from "react";
+
+type Project = { id:number|string; title:string; description:string; tags:string; link?:string; imageUrl?:string };
+const featured:Project[] = [
+  { id:"starter-1", title:"Taskflow", description:"A calm, focused workspace that turns scattered team requests into clear next steps.", tags:"React, TypeScript, Product design" },
+  { id:"starter-2", title:"Pocket Ledger", description:"A straightforward expense tracker built to make everyday numbers feel less intimidating.", tags:"Web app, Data, Accessibility" },
+];
+
+export default function ProjectGallery() {
+  const [projects,setProjects]=useState<Project[]>(featured), [open,setOpen]=useState(false), [busy,setBusy]=useState(false), [message,setMessage]=useState("");
+  useEffect(()=>{fetch("/api/projects").then(r=>r.ok?r.json():{projects:[]}).then(d=>setProjects([...d.projects,...featured])).catch(()=>{});},[]);
+  async function submit(event:FormEvent<HTMLFormElement>){event.preventDefault();setBusy(true);setMessage("");const form=event.currentTarget;const data=new FormData(form);const key=String(data.get("adminKey")||"");data.delete("adminKey");const response=await fetch("/api/projects",{method:"POST",headers:{Authorization:`Bearer ${key}`},body:data});const result=await response.json();if(response.ok){setProjects([result.project,...projects]);form.reset();setOpen(false);}else setMessage(result.error||"That project could not be saved.");setBusy(false);}
+  return <section className="work-section" aria-label="Project gallery">
+    <div className="work-toolbar"><span>{String(projects.length).padStart(2,"0")} projects</span><button onClick={()=>setOpen(true)}>＋ Add a project</button></div>
+    <div className="project-grid">{projects.map((project,index)=><article className={`project-card tone-${index%3}`} key={project.id}><div className="project-visual">{project.imageUrl?<img src={project.imageUrl} alt={`Preview of ${project.title}`} />:<div className="project-placeholder"><span>{String(index+1).padStart(2,"0")}</span><b>{project.title.slice(0,1)}</b></div>}</div><div className="project-info"><span className="project-number">{String(index+1).padStart(2,"0")}</span><div><h2>{project.title}</h2><p>{project.description}</p><ul>{project.tags.split(",").map(tag=><li key={tag}>{tag.trim()}</li>)}</ul></div>{project.link&&<a className="project-link" href={project.link} target="_blank" rel="noreferrer">↗</a>}</div></article>)}</div>
+    {open&&<div className="modal-backdrop" onMouseDown={e=>e.target===e.currentTarget&&setOpen(false)}><div className="project-modal" role="dialog" aria-modal="true" aria-labelledby="add-title"><button className="modal-close" onClick={()=>setOpen(false)} aria-label="Close">×</button><p className="eyebrow"><span /> Private manager</p><h2 id="add-title">Add something <em>you’re proud of.</em></h2><form onSubmit={submit}><label>Admin key<input name="adminKey" type="password" required autoComplete="off" placeholder="Your private publishing key" /></label><label>Project title<input name="title" required maxLength={80} placeholder="e.g. Appointment planner" /></label><label>Short description<textarea name="description" required maxLength={320} rows={4} placeholder="What problem did it solve?" /></label><label>Skills & tools<input name="tags" required maxLength={180} placeholder="React, API design, TypeScript" /></label><label>Project link <small>optional</small><input name="link" type="url" placeholder="https://…" /></label><label>Cover image <small>optional · JPG, PNG or WebP, max 5 MB</small><input name="image" type="file" accept="image/jpeg,image/png,image/webp" /></label>{message&&<p className="form-error" role="alert">{message}</p>}<button className="button primary" disabled={busy}>{busy?"Saving…":"Publish project"}<span>→</span></button></form></div></div>}
+  </section>;
+}
