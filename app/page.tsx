@@ -51,7 +51,7 @@ export default function HomePage() {
       <div className="work-cards">
         <article><div className="work-preview taskflow"><div className="mini-sidebar"/><div className="kanban"><i/><i/><i/></div></div><h3>Taskflow</h3><p><b>Problem:</b> Team requests were scattered across chat and email.<br/><b>Result:</b> A lightweight request tracker that gave one clear workflow and reduced follow-up time.</p><ul><li>React</li><li>TypeScript</li><li>Workflow</li></ul></article>
         <article><div className="work-preview ledger"><div className="mini-sidebar"/><div className="chart"><i/><i/><i/><i/><i/></div></div><h3>Pocket Ledger</h3><p><b>Problem:</b> Daily expenses were tracked manually in spreadsheets.<br/><b>Result:</b> A simple expense dashboard that made cash tracking clearer for a small business owner.</p><ul><li>Web App</li><li>Data</li><li>Reporting</li></ul></article>
-        <article className="featured-project"><a className="work-preview project-image" href="https://github.com/mitzZzera/Appointment_Booking_Board" target="_blank" rel="noreferrer" aria-label="View Appointment Booking Board on GitHub"><Image src="/appointment-booking-board.png" alt="Appointment Booking Board dashboard preview" fill sizes="(max-width: 760px) 100vw, 33vw"/><span className="project-open">View project ↗</span></a><h3>Appointment Booking Board</h3><p><b>Problem:</b> Appointments were being managed through phone calls and paper notes.<br/><b>Result:</b> A responsive scheduling dashboard with weekly navigation, customer and service views, conflict checks, and booking status controls.</p><ul><li>Next.js</li><li>TypeScript</li><li>Scheduling</li></ul><a className="project-repo-link" href="https://github.com/mitzZzera/Appointment_Booking_Board" target="_blank" rel="noreferrer">Explore the project <span>↗</span></a></article>
+        <article className="featured-project"><a className="work-preview project-image" href="https://dimitar-appointment-booking-board.mitashkiotada.chatgpt.site" target="_blank" rel="noreferrer" aria-label="Open the live Appointment Booking Board"><Image src="/appointment-booking-board.png" alt="Appointment Booking Board dashboard preview" fill sizes="(max-width: 760px) 100vw, 33vw"/><span className="project-open">View project ↗</span></a><h3>Appointment Booking Board</h3><p><b>Problem:</b> Appointments were being managed through phone calls and paper notes.<br/><b>Result:</b> A responsive scheduling dashboard with weekly navigation, customer and service views, conflict checks, and booking status controls.</p><ul><li>Next.js</li><li>TypeScript</li><li>Scheduling</li></ul><a className="project-repo-link" href="https://dimitar-appointment-booking-board.mitashkiotada.chatgpt.site" target="_blank" rel="noreferrer">Explore the project <span>↗</span></a></article>
       </div>
     </section>
 
@@ -64,6 +64,7 @@ export default function HomePage() {
     <footer className="site-footer"><Link className="brand" href="#top">DS<span>.</span></Link><p>Dimitar Shopov — Based in Bulgaria · Working everywhere<br/><em>Thoughtful code. Human results.</em></p><nav><a href="#projects">Projects</a><a href="#services">Services</a><a href="#about">About</a><a href="#contact">Contact</a><a href="https://github.com/mitzZzera">GitHub</a></nav><span>© 2026 Dimitar Shopov</span></footer>
   </main>;
 }
+
 
 
 
