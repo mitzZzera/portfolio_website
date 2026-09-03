@@ -57,13 +57,14 @@ export default function HomePage() {
 
     <section className="services-section" id="services"><p className="section-label"><span /> What I offer</p><div className="services-grid">{services.map(([icon,title,copy])=><article key={title}><i>{icon}</i><div><h3>{title}</h3><p>{copy}</p></div></article>)}</div><div className="fit-row"><p><i>✓</i><span><b>Best fit:</b> small businesses, solo operators, and teams<br/>that need a focused software solution quickly.</span></p><p><i>×</i><span><b>Not a fit for:</b> huge enterprise platforms or long,<br/>heavy agency-style engagements.</span></p></div></section>
 
-    <section className="about-section" id="about"><p className="section-label"><span /> About Dimitar</p><div className="about-grid"><div className="about-photo"><Image src="/dimitar-shopov.jpeg" alt="Dimitar Shopov" fill sizes="(max-width: 800px) 100vw, 42vw"/></div><div><p className="about-lead">I’m a Bulgaria-based developer who enjoys turning fuzzy app problems into practical tools people actually want to use. I care about clarity, calm collaboration, and building software that earns its place in someone’s day.</p><p className="joke">Morning person — provided the morning starts after noon.</p><ul className="facts"><li>⌖ Based in Bulgaria</li><li>⌂ Works remotely</li><li>♡ Small business friendly</li><li>◎ EN / BG</li></ul></div></div></section>
+    <section className="about-section" id="about"><p className="section-label"><span /> About Dimitar</p><div className="about-grid"><div className="about-photo"><Image src="/dimitar-working.png" alt="Dimitar Shopov working on a laptop outdoors" fill sizes="(max-width: 800px) 100vw, 42vw"/></div><div><p className="about-lead">I’m a Bulgaria-based developer who enjoys turning fuzzy app problems into practical tools people actually want to use. I care about clarity, calm collaboration, and building software that earns its place in someone’s day.</p><p className="joke">Morning person — provided the morning starts after noon.</p><ul className="facts"><li>⌖ Based in Bulgaria</li><li>⌂ Works remotely</li><li>♡ Small business friendly</li><li>◎ EN / BG</li></ul></div></div></section>
 
     <section className="contact-section" id="contact"><p className="section-label"><span /> Start a conversation</p><div className="contact-grid"><div><h2>Tell me what you need.</h2><p>If you have a recurring task, a clunky workflow, or a small software idea that could save time, I’d love to hear about it.</p><ul><li>✉ hello@dimitarshopov.dev</li><li>in linkedin.com/in/dimitarshopov</li><li>● github.com/mitzZzera</li></ul></div><InlineContactForm/></div></section>
 
     <footer className="site-footer"><Link className="brand" href="#top">DS<span>.</span></Link><p>Dimitar Shopov — Based in Bulgaria · Working everywhere<br/><em>Thoughtful code. Human results.</em></p><nav><a href="#projects">Projects</a><a href="#services">Services</a><a href="#about">About</a><a href="#contact">Contact</a><a href="https://github.com/mitzZzera">GitHub</a></nav><span>© 2026 Dimitar Shopov</span></footer>
   </main>;
 }
+
 
 
 
