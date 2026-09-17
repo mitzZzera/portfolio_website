@@ -5,7 +5,7 @@ type Project = { id:number|string; title:string; description:string; tags:string
 const featured:Project[] = [
   { id:"appointment-booking-board", title:"Appointment Booking Board", description:"A responsive scheduling dashboard with weekly calendar navigation, customer and service views, conflict checks, and appointment status controls.", tags:"Next.js, TypeScript, Scheduling, Product design", link:"https://dimitar-appointment-booking-board.mitashkiotada.chatgpt.site", imageUrl:"/appointment-booking-board.png" },
   { id:"starter-1", title:"Taskflow", description:"A calm, focused workspace that turns scattered team requests into clear next steps.", tags:"React, TypeScript, Product design" },
-  { id:"starter-2", title:"Pocket Ledger", description:"A straightforward expense tracker built to make everyday numbers feel less intimidating.", tags:"Web app, Data, Accessibility" },
+  { id:"restaurant-reservation-manager", title:"Restaurant Reservation Manager", description:"A restaurant control board for reservations, guest status, table assignments, and a live floor plan.", tags:"Next.js, TypeScript, Hospitality, Product design", link:"https://dimitar-restaurant-reservation-manager.mitashkiotada.chatgpt.site" },
 ];
 
 export default function ProjectGallery() {
