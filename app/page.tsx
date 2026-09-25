@@ -1,8 +1,12 @@
+export const dynamic = "force-static";
 import Image from "next/image";
 import Link from "next/link";
 import ContactPrompt from "./ContactPrompt";
 import InlineContactForm from "./InlineContactForm";
 import "./featured-project.css";
+
+const projectsPath = `${process.env.GITHUB_PAGES === "true" ? `/${process.env.GITHUB_REPOSITORY?.split("/")[1] ?? "portfolio_website"}` : ""}/projects.html`;
+const publicAsset = (path: string) => `${process.env.GITHUB_PAGES === "true" ? `/${process.env.GITHUB_REPOSITORY?.split("/")[1] ?? "portfolio_website"}` : ""}${path}`;
 
 const steps = [
   ["01", "◉", "Listen first", "I start by understanding the bottleneck, not by pitching unnecessary features."],
@@ -35,7 +39,7 @@ export default function HomePage() {
         <p>Based in Bulgaria, I bring the speed and flexibility of focused development to teams that need effective software without the overhead.</p>
         <div className="hero-actions"><a className="dark-button" href="#projects">Explore projects <span>→</span></a><ContactPrompt className="text-button">Start a conversation <span>↗</span></ContactPrompt></div>
       </div>
-      <div className="hero-photo"><Image src="/dimitar-shopov.jpeg" alt="Dimitar Shopov outdoors in the Bulgarian mountains" fill priority sizes="(max-width: 800px) 100vw, 48vw"/><span className="photo-note">Thoughtful code,<br/>useful results. ↗</span><div className="availability"><i /> Available for new projects</div></div>
+      <div className="hero-photo"><Image src={publicAsset("/dimitar-shopov.jpeg")} alt="Dimitar Shopov outdoors in the Bulgarian mountains" fill priority sizes="(max-width: 800px) 100vw, 48vw"/><span className="photo-note">Thoughtful code,<br/>useful results. ↗</span><div className="availability"><i /> Available for new projects</div></div>
     </section>
 
     <section className="value-section">
@@ -47,23 +51,28 @@ export default function HomePage() {
 
     <section className="selected-work" id="projects">
       <p className="section-label"><span /> Selected work</p>
-      <div className="section-heading"><h2>Things I’ve <em>made work.</em></h2><p>A few examples of micro apps, internal tools, and practical software fixes designed around real business needs.</p><Link className="acid-button" href="/projects">See all projects <span>→</span></Link></div>
+      <div className="section-heading"><h2>Things I’ve <em>made work.</em></h2><p>A few examples of micro apps, internal tools, and practical software fixes designed around real business needs.</p><a className="acid-button" href={projectsPath}>See all projects <span>→</span></a></div>
       <div className="work-cards">
         <article><div className="work-preview taskflow"><div className="mini-sidebar"/><div className="kanban"><i/><i/><i/></div></div><h3>Taskflow</h3><p><b>Problem:</b> Team requests were scattered across chat and email.<br/><b>Result:</b> A lightweight request tracker that gave one clear workflow and reduced follow-up time.</p><ul><li>React</li><li>TypeScript</li><li>Workflow</li></ul></article>
         <article className="featured-project"><a className="work-preview restaurant-project" href="https://dimitar-restaurant-reservation-manager.mitashkiotada.chatgpt.site" target="_blank" rel="noreferrer" aria-label="Open the live Restaurant Reservation Manager"><div className="restaurant-host"><span>TABLEAU</span><b>Today’s service</b><div><i/><i/><i/><i/></div></div><span className="project-open">View project ↗</span></a><h3>Restaurant Reservation Manager</h3><p><b>Problem:</b> Busy service teams need a clear view of bookings, guests, and tables.<br/><b>Result:</b> A restaurant control board for reservations, guest status, table assignments, and a live floor plan.</p><ul><li>Next.js</li><li>TypeScript</li><li>Hospitality</li></ul><a className="project-repo-link" href="https://dimitar-restaurant-reservation-manager.mitashkiotada.chatgpt.site" target="_blank" rel="noreferrer">Explore the project <span>↗</span></a></article>
-        <article className="featured-project"><a className="work-preview project-image" href="https://dimitar-appointment-booking-board.mitashkiotada.chatgpt.site" target="_blank" rel="noreferrer" aria-label="Open the live Appointment Booking Board"><Image src="/appointment-booking-board.png" alt="Appointment Booking Board dashboard preview" fill sizes="(max-width: 760px) 100vw, 33vw"/><span className="project-open">View project ↗</span></a><h3>Appointment Booking Board</h3><p><b>Problem:</b> Appointments were being managed through phone calls and paper notes.<br/><b>Result:</b> A responsive scheduling dashboard with weekly navigation, customer and service views, conflict checks, and booking status controls.</p><ul><li>Next.js</li><li>TypeScript</li><li>Scheduling</li></ul><a className="project-repo-link" href="https://dimitar-appointment-booking-board.mitashkiotada.chatgpt.site" target="_blank" rel="noreferrer">Explore the project <span>↗</span></a></article>
+        <article className="featured-project"><a className="work-preview project-image" href="https://dimitar-appointment-booking-board.mitashkiotada.chatgpt.site" target="_blank" rel="noreferrer" aria-label="Open the live Appointment Booking Board"><Image src={publicAsset("/appointment-booking-board.png")} alt="Appointment Booking Board dashboard preview" fill sizes="(max-width: 760px) 100vw, 33vw"/><span className="project-open">View project ↗</span></a><h3>Appointment Booking Board</h3><p><b>Problem:</b> Appointments were being managed through phone calls and paper notes.<br/><b>Result:</b> A responsive scheduling dashboard with weekly navigation, customer and service views, conflict checks, and booking status controls.</p><ul><li>Next.js</li><li>TypeScript</li><li>Scheduling</li></ul><a className="project-repo-link" href="https://dimitar-appointment-booking-board.mitashkiotada.chatgpt.site" target="_blank" rel="noreferrer">Explore the project <span>↗</span></a></article>
       </div>
     </section>
 
     <section className="services-section" id="services"><p className="section-label"><span /> What I offer</p><div className="services-grid">{services.map(([icon,title,copy])=><article key={title}><i>{icon}</i><div><h3>{title}</h3><p>{copy}</p></div></article>)}</div><div className="fit-row"><p><i>✓</i><span><b>Best fit:</b> small businesses, solo operators, and teams<br/>that need a focused software solution quickly.</span></p><p><i>×</i><span><b>Not a fit for:</b> huge enterprise platforms or long,<br/>heavy agency-style engagements.</span></p></div></section>
 
-    <section className="about-section" id="about"><p className="section-label"><span /> About Dimitar</p><div className="about-grid"><div className="about-photo"><Image src="/dimitar-working.png" alt="Dimitar Shopov working on a laptop outdoors" fill sizes="(max-width: 800px) 100vw, 42vw"/></div><div><p className="about-lead">I’m a Bulgaria-based developer who enjoys turning fuzzy app problems into practical tools people actually want to use. I care about clarity, calm collaboration, and building software that earns its place in someone’s day.</p><p className="joke">Morning person — provided the morning starts after noon.</p><ul className="facts"><li>⌖ Based in Bulgaria</li><li>⌂ Works remotely</li><li>♡ Small business friendly</li><li>◎ EN / BG</li></ul></div></div></section>
+    <section className="about-section" id="about"><p className="section-label"><span /> About Dimitar</p><div className="about-grid"><div className="about-photo"><Image src={publicAsset("/dimitar-working.png")} alt="Dimitar Shopov working on a laptop outdoors" fill sizes="(max-width: 800px) 100vw, 42vw"/></div><div><p className="about-lead">I’m a Bulgaria-based developer who enjoys turning fuzzy app problems into practical tools people actually want to use. I care about clarity, calm collaboration, and building software that earns its place in someone’s day.</p><p className="joke">Morning person — provided the morning starts after noon.</p><ul className="facts"><li>⌖ Based in Bulgaria</li><li>⌂ Works remotely</li><li>♡ Small business friendly</li><li>◎ EN / BG</li></ul></div></div></section>
 
     <section className="contact-section" id="contact"><p className="section-label"><span /> Start a conversation</p><div className="contact-grid"><div><h2>Tell me what you need.</h2><p>If you have a recurring task, a clunky workflow, or a small software idea that could save time, I’d love to hear about it.</p><ul><li>✉ hello@dimitarshopov.dev</li><li>in linkedin.com/in/dimitarshopov</li><li>● github.com/mitzZzera</li></ul></div><InlineContactForm/></div></section>
 
     <footer className="site-footer"><Link className="brand" href="#top">DS<span>.</span></Link><p>Dimitar Shopov — Based in Bulgaria · Working everywhere<br/><em>Thoughtful code. Human results.</em></p><nav><a href="#projects">Projects</a><a href="#services">Services</a><a href="#about">About</a><a href="#contact">Contact</a><a href="https://github.com/mitzZzera">GitHub</a></nav><span>© 2026 Dimitar Shopov</span></footer>
   </main>;
 }
+
+
+
+
+
 
 
 
