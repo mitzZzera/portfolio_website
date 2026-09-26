@@ -32,6 +32,13 @@ jobs:
         env:
           GITHUB_PAGES: true
           GITHUB_REPOSITORY: ${{ github.repository }}
+      - name: Flatten prefixed static assets
+        shell: bash
+        run: |
+          repo_name=$(printf %s "$GITHUB_REPOSITORY" | cut -d/ -f2)
+          if [ -d "dist/client/$repo_name/_next" ]; then
+            cp -R "dist/client/$repo_name/_next" dist/client/
+          fi
       - name: Configure Pages
         uses: actions/configure-pages@v5
       - name: Upload Pages artifact
