@@ -2,7 +2,7 @@ type Project = { id:number|string; title:string; description:string; tags:string
 const staticPrefix = process.env.GITHUB_PAGES === "true" ? `/${process.env.GITHUB_REPOSITORY?.split("/")[1] ?? "portfolio_website"}` : "";
 const featured:Project[] = [
   { id:"appointment-booking-board", title:"Appointment Booking Board", description:"A responsive scheduling dashboard with weekly calendar navigation, customer and service views, conflict checks, and appointment status controls.", tags:"Next.js, TypeScript, Scheduling, Product design", link:"https://dimitar-appointment-booking-board.netlify.app", imageUrl:"/appointment-booking-board.png" },
-  { id:"starter-1", title:"Taskflow", description:"A calm, focused workspace that turns scattered team requests into clear next steps.", tags:"React, TypeScript, Product design" },
+  { id:"field-service-dispatch-board", title:"Field Service Dispatch Board", description:"A dispatch workspace with live job lanes, technician assignments, status updates, and browser-persisted demo data.", tags:"Next.js, TypeScript, Field operations, Product design", link:"https://dimitar-field-service-dispatch-board.netlify.app" },
   { id:"restaurant-reservation-manager", title:"Restaurant Reservation Manager", description:"A restaurant control board for reservations, guest status, table assignments, and a live floor plan.", tags:"Next.js, TypeScript, Hospitality, Product design", link:"https://dimitar-restaurant-reservation-manager.netlify.app" },
 ];
 
