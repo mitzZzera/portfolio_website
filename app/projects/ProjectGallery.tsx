@@ -4,6 +4,7 @@ const featured:Project[] = [
   { id:"appointment-booking-board", title:"Appointment Booking Board", description:"A responsive scheduling dashboard with weekly calendar navigation, customer and service views, conflict checks, and appointment status controls.", tags:"Next.js, TypeScript, Scheduling, Product design", link:"https://dimitar-appointment-booking-board.netlify.app", imageUrl:"/appointment-booking-board.png" },
   { id:"field-service-dispatch-board", title:"Field Service Dispatch Board", description:"A dispatch workspace with live job lanes, technician assignments, status updates, and browser-persisted demo data.", tags:"Next.js, TypeScript, Field operations, Product design", link:"https://dimitar-field-service-dispatch-board.netlify.app" },
   { id:"restaurant-reservation-manager", title:"Restaurant Reservation Manager", description:"A restaurant control board for reservations, guest status, table assignments, and a live floor plan.", tags:"Next.js, TypeScript, Hospitality, Product design", link:"https://dimitar-restaurant-reservation-manager.netlify.app" },
+  { id:"sora-sol-bansko", title:"Sora Sol Bansko", description:"A hospitality website introducing a seasonal menu, intimate dining room, and Japanese-Bulgarian identity in Bansko.", tags:"Web design, Hospitality, Responsive", link:"https://sora-sol-bansko.netlify.app" },
 ];
 
 export default function ProjectGallery() {
