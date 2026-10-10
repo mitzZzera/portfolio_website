@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import Image from "next/image";
-import Link from "next/link";
 import { notFound } from "next/navigation";
 import ContactPrompt from "../../ContactPrompt";
 import { featured, findProject, homePagePath, projectsIndexPath, staticPrefix } from "../projectData";
@@ -26,8 +25,8 @@ export default async function ProjectDetailPage({ params }: { params: Promise<{ 
 
   return <main className="landing case-study-page">
     <header className="topbar">
-      <Link className="brand" href={homePagePath}>DS<span>.</span></Link>
-      <nav aria-label="Primary navigation"><Link href={`${homePagePath}#projects`}>Projects</Link><Link href={`${homePagePath}#services`}>Services</Link><Link href={`${homePagePath}#about`}>About</Link><Link href={`${homePagePath}#contact`}>Contact</Link><ContactPrompt className="nav-cta">Let’s talk <span>→</span></ContactPrompt></nav>
+      <a className="brand" href={homePagePath}>DS<span>.</span></a>
+      <nav aria-label="Primary navigation"><a href={`${homePagePath}#projects`}>Projects</a><a href={`${homePagePath}#services`}>Services</a><a href={`${homePagePath}#about`}>About</a><a href={`${homePagePath}#contact`}>Contact</a><ContactPrompt className="nav-cta">Let’s talk <span>→</span></ContactPrompt></nav>
     </header>
 
     <div className="case-study-back"><a href={projectsIndexPath}>← All projects</a><span>Case study / {project.title}</span></div>
