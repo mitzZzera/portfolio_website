@@ -29,7 +29,7 @@ export default function HomePage() {
   return <main className="landing">
     <header className="topbar">
       <Link className="brand" href="#top">DS<span>.</span></Link>
-      <nav aria-label="Primary navigation"><a href="#projects">Projects</a><a href="#services">Services</a><a href="#about">About</a><a href="#contact">Contact</a><a className="social-link" href="https://www.linkedin.com" aria-label="LinkedIn">in</a><a className="social-link github" href="https://github.com/mitzZzera" aria-label="GitHub">●</a><ContactPrompt className="nav-cta">Let’s talk <span>→</span></ContactPrompt></nav>
+      <nav aria-label="Primary navigation"><a href="#projects">Projects</a><a href="#services">Services</a><a href="#about">About</a><a href="#contact">Contact</a><ContactPrompt className="nav-cta">Let’s talk <span>→</span></ContactPrompt></nav>
     </header>
 
     <section className="reference-hero" id="top">

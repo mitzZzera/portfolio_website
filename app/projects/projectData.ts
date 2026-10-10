@@ -20,6 +20,10 @@ export const projectPagePath = (slug: string) => `${staticPrefix}/projects/${slu
 
 export const projectsIndexPath = `${staticPrefix}/projects.html`;
 
+export const homePagePath = process.env.GITHUB_PAGES === "true"
+  ? `${staticPrefix}/index.html`
+  : "/";
+
 export const featured: Project[] = [
   {
     slug: "appointment-booking-board",
