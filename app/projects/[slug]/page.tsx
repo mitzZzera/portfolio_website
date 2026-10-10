@@ -3,7 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import ContactPrompt from "../../ContactPrompt";
-import { featured, findProject, projectPagePath, projectsIndexPath, staticPrefix } from "../projectData";
+import { featured, findProject, projectsIndexPath, staticPrefix } from "../projectData";
 
 export const dynamic = "force-static";
 
