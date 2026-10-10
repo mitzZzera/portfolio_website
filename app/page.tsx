@@ -3,11 +3,11 @@ import Image from "next/image";
 import Link from "next/link";
 import ContactPrompt from "./ContactPrompt";
 import InlineContactForm from "./InlineContactForm";
-import { projectPagePath } from "./projects/projectData";
+import { projectPagePath, projectsIndexPath, staticPrefix } from "./projects/projectData";
 import "./featured-project.css";
 
-const projectsPath = `${process.env.GITHUB_PAGES === "true" ? `/${process.env.GITHUB_REPOSITORY?.split("/")[1] ?? "portfolio_website"}` : ""}/projects.html`;
-const publicAsset = (path: string) => `${process.env.GITHUB_PAGES === "true" ? `/${process.env.GITHUB_REPOSITORY?.split("/")[1] ?? "portfolio_website"}` : ""}${path}`;
+const projectsPath = projectsIndexPath;
+const publicAsset = (path: string) => `${staticPrefix}${path}`;
 
 const steps = [
   ["01", "◉", "Listen first", "I start by understanding the bottleneck, not by pitching unnecessary features."],

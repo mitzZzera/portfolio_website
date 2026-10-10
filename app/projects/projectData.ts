@@ -12,15 +12,18 @@ export type Project = {
   highlights: string[];
 };
 
-export const staticPrefix = process.env.GITHUB_PAGES === "true"
+const isGithubPages = process.env.GITHUB_PAGES === "true";
+const isCustomDomain = process.env.GITHUB_PAGES_CUSTOM_DOMAIN === "true";
+
+export const staticPrefix = isGithubPages && !isCustomDomain
   ? `/${process.env.GITHUB_REPOSITORY?.split("/")[1] ?? "portfolio_website"}`
   : "";
 
-export const projectPagePath = (slug: string) => `${staticPrefix}/projects/${slug}${process.env.GITHUB_PAGES === "true" ? ".html" : ""}`;
+export const projectPagePath = (slug: string) => `${staticPrefix}/projects/${slug}${isGithubPages ? ".html" : ""}`;
 
 export const projectsIndexPath = `${staticPrefix}/projects.html`;
 
-export const homePagePath = process.env.GITHUB_PAGES === "true"
+export const homePagePath = isGithubPages
   ? `${staticPrefix}/index.html`
   : "/";
 

@@ -6,7 +6,9 @@ import "./projects2.css";
 
 const sans=DM_Sans({variable:"--font-sans",subsets:["latin"]});
 const serif=Instrument_Serif({variable:"--font-serif",subsets:["latin"],weight:"400"});
-const staticPrefix = process.env.GITHUB_PAGES === "true" ? `/${process.env.GITHUB_REPOSITORY?.split("/")[1] ?? "portfolio_website"}` : "";
+const isGithubPages = process.env.GITHUB_PAGES === "true";
+const isCustomDomain = process.env.GITHUB_PAGES_CUSTOM_DOMAIN === "true";
+const staticPrefix = isGithubPages && !isCustomDomain ? `/${process.env.GITHUB_REPOSITORY?.split("/")[1] ?? "portfolio_website"}` : "";
 export const metadata: Metadata = {
   title: { default: "Dimitar Shopov — Programmer & Problem Solver", template: "%s — Dimitar Shopov" },
   description: "Portfolio of Dimitar Shopov, a programmer who builds practical apps and solves real-world software problems.",
