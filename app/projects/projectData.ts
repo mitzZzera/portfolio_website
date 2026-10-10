@@ -54,7 +54,7 @@ export const featured: Project[] = [
     title: "Field Service Dispatch Board",
     description: "A dispatch workspace with live job lanes, technician assignments, status updates, and browser-persisted demo data.",
     tags: "Next.js, TypeScript, Field operations, Product design",
-    liveUrl: "https://dispatch.dimitar-shopov.dev",
+    liveUrl: "https://dispatch-board.dimitar-shopov.dev",
     kicker: "A clearer day for teams in the field",
     about: "Field Service Dispatch Board is a live operations view for service teams coordinating jobs across multiple technicians. It keeps ownership, timing, and next actions visible without turning dispatch into spreadsheet maintenance.",
     howItWorks: [
@@ -74,7 +74,7 @@ export const featured: Project[] = [
     title: "Restaurant Reservation Manager",
     description: "A restaurant control board for reservations, guest status, table assignments, and a live floor plan.",
     tags: "Next.js, TypeScript, Hospitality, Product design",
-    liveUrl: "https://restaurant.dimitar-shopov.dev",
+    liveUrl: "https://reservation-manager.dimitar-shopov.dev",
     kicker: "A calmer service before the doors open",
     about: "Restaurant Reservation Manager brings bookings, guests, tables, and service notes into one practical control board for a busy hospitality team.",
     howItWorks: [
