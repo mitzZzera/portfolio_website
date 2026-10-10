@@ -33,7 +33,7 @@ export const featured: Project[] = [
     title: "Appointment Booking Board",
     description: "A responsive scheduling dashboard with weekly calendar navigation, customer and service views, conflict checks, and appointment status controls.",
     tags: "Next.js, TypeScript, Scheduling, Product design",
-    liveUrl: "https://dimitar-appointment-booking-board.netlify.app",
+    liveUrl: "https://booking.dimitar-shopov.dev",
     imageUrl: "/appointment-booking-board.png",
     kicker: "Scheduling without the sticky notes",
     about: "Appointment Booking Board gives a small service business one calm place to manage bookings, customers, services, and the details that make a day run on time.",
@@ -54,7 +54,7 @@ export const featured: Project[] = [
     title: "Field Service Dispatch Board",
     description: "A dispatch workspace with live job lanes, technician assignments, status updates, and browser-persisted demo data.",
     tags: "Next.js, TypeScript, Field operations, Product design",
-    liveUrl: "https://dimitar-field-service-dispatch-board.netlify.app",
+    liveUrl: "https://dispatch.dimitar-shopov.dev",
     kicker: "A clearer day for teams in the field",
     about: "Field Service Dispatch Board is a live operations view for service teams coordinating jobs across multiple technicians. It keeps ownership, timing, and next actions visible without turning dispatch into spreadsheet maintenance.",
     howItWorks: [
@@ -74,7 +74,7 @@ export const featured: Project[] = [
     title: "Restaurant Reservation Manager",
     description: "A restaurant control board for reservations, guest status, table assignments, and a live floor plan.",
     tags: "Next.js, TypeScript, Hospitality, Product design",
-    liveUrl: "https://dimitar-restaurant-reservation-manager.netlify.app",
+    liveUrl: "https://restaurant.dimitar-shopov.dev",
     kicker: "A calmer service before the doors open",
     about: "Restaurant Reservation Manager brings bookings, guests, tables, and service notes into one practical control board for a busy hospitality team.",
     howItWorks: [
@@ -94,7 +94,7 @@ export const featured: Project[] = [
     title: "Sora Sol Bansko",
     description: "A hospitality website introducing a seasonal menu, intimate dining room, and Japanese-Bulgarian identity in Bansko.",
     tags: "Web design, Hospitality, Responsive",
-    liveUrl: "https://sora-sol-bansko.netlify.app",
+    liveUrl: "https://sora-sol.dimitar-shopov.dev",
     kicker: "Japanese soul. Bulgarian heart.",
     about: "Sora Sol Bansko is a hospitality website designed to make a destination restaurant feel tangible before a guest arrives. It balances atmosphere, food, place, and practical visit information.",
     howItWorks: [
