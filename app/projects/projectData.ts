@@ -25,6 +25,61 @@ export const homePagePath = isGithubPages ? `${staticPrefix}/index.html` : "/";
 
 export const featured: Project[] = [
   {
+    slug: "compote-stealer",
+    title: "Compote Stealer",
+    description: "A browser arcade game: collect jars of compote, dodge an angry Babushka, and survive increasingly difficult basements while chasing a personal best.",
+    tags: "Browser game, Pixel art, Keyboard & touch",
+    liveUrl: "https://compote-stealer.dimitar-shopov.dev/",
+    imageUrl: "/project-guides/compote-home.jpg",
+    kicker: "A little basement mischief",
+    about: "Her basement. Her compotes. Your questionable life choices. A small arcade survival game where every jar is worth points and every extra detour gives Babushka another chance to catch you.",
+    audience: "Casual players who want a quick arcade challenge on a computer, tablet, or phone.",
+    purpose: "Compote Stealer explores a different kind of interactive experience from a business dashboard. It turns a simple idea into a complete game: a readable playfield, responsive controls, an opponent that navigates around shelves, escalating levels, and a reason to play another round. The challenge is to balance collecting valuable jars with staying alive long enough to reach the next basement.",
+    demoNote: "The game is playable without an account. Keyboard controls work on a computer, and touch controls appear on touch devices. Sound starts off and can be enabled from the top bar. High scores stay in the browser and device where you save them; they are not a shared online leaderboard.",
+    walkthrough: [
+      {
+        title: "Start a heist and learn the controls",
+        description: "The opening screen introduces the premise and keeps the first action simple: start playing. The game display shows your haul, remaining time, three lives, and the current basement. The controls stay close to the play area so you can check them without leaving the game.",
+        steps: [
+          "Choose Let’s steal some compote to begin. Move with WASD or the arrow keys; on a touch device, use the directional buttons below the game.",
+          "Hold Space, or the touch Sprint button, for a burst of speed. Sprinting uses stamina, so release it to let the energy bar refill.",
+          "Open How to play for a reminder, or enable Sound from the top bar if you want the optional effects. Press P, Escape, or the pause button whenever you need a break.",
+        ],
+        image: "/project-guides/compote-home.jpg",
+        caption: "The start screen introduces the game, score display, and keyboard or touch controls.",
+      },
+      {
+        title: "Collect the loot while staying one step ahead",
+        description: "Walk over jars to collect them while Babushka chases you through the corridors. Shelves block movement, so positioning and route choices matter. Valuable jars tempt you into longer detours, while a limited sprint gives you a way out when the chase gets close.",
+        steps: [
+          "Collect cherry jars for 10 points, apricot for 25, plum for 50, and golden pear for 100. Clear all 22 jars for a 250-point bonus and a fresh batch.",
+          "Avoid Babushka: each catch costs one of your three lives. A short grace period lets you recover, and your score carries across lives and levels.",
+          "Survive the first 45-second countdown to earn a bonus of 100 times the basement number and move on automatically. Babushka gets faster, five layouts cycle, and the timer shortens every two levels to a minimum of 30 seconds.",
+        ],
+        image: "/project-guides/compote-gameplay.jpg",
+        caption: "The live playfield uses shelves, collectible jars, and a pursuing opponent to create the arcade challenge.",
+      },
+      {
+        title: "Pause, save your score, and try another run",
+        description: "A run ends when all three lives are lost, but you can also finish it from the pause menu. The results screen brings together your points, jars collected, and basement reached, then lets you save a name with the score or start over.",
+        steps: [
+          "Pause with P, Escape, or the pause control. Back to the basement resumes the chase; End run & save score takes you to the results screen. Leaving the browser tab also pauses play automatically.",
+          "Enter a leaderboard name and select Save score. Open High scores to review the top ten scores stored in this browser.",
+          "Choose Another little heist? Play again to start fresh with three lives. Clearing site data removes saved records, and scores do not transfer to another browser or device.",
+        ],
+        image: "/project-guides/compote-score.jpg",
+        caption: "The results screen offers local score saving and a quick way to start another heist.",
+      },
+    ],
+    exercise: "Start a run, collect a few jars, and use a short sprint to escape Babushka. Pause, choose End run & save score, and save a sample name. Open High scores, then refresh the page to check that your record is still there.",
+    technical: [
+      { label: "Languages & interface", detail: "JavaScript modules, HTML, and CSS. The game runs directly in the browser without a frontend framework or third-party runtime packages." },
+      { label: "Game engine & artwork", detail: "The game rules, renderer, and browser input are separate modules. Canvas draws the pixel artwork; CSS builds the page and jar decorations. The engine handles movement, collisions, opponent pathfinding, stamina, scoring, and level progression." },
+      { label: "Audio & storage", detail: "Web Audio generates optional sound effects. Browser localStorage saves the top ten scores. There is no account system, backend server, or shared leaderboard database." },
+      { label: "Build, checks & hosting", detail: "Node.js scripts create the static production build, and the Node test runner checks gameplay and persistence behaviour. Published on Netlify at compote-stealer.dimitar-shopov.dev." },
+    ],
+  },
+  {
     slug: "appointment-booking-board",
     title: "Appointment Booking Board",
     description: "A scheduling workspace for appointments, customer records, service pricing, and a clear view of daily capacity.",
