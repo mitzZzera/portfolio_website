@@ -4,110 +4,213 @@ export type Project = {
   description: string;
   tags: string;
   liveUrl: string;
-  imageUrl?: string;
+  imageUrl: string;
   kicker: string;
   about: string;
-  howItWorks: string[];
-  howToUse: string[];
-  highlights: string[];
+  audience: string;
+  purpose: string;
+  demoNote: string;
+  walkthrough: { title: string; description: string; steps: string[]; image: string; caption: string }[];
+  exercise: string;
+  technical: { label: string; detail: string }[];
 };
 
 const isGithubPages = process.env.GITHUB_PAGES === "true";
 const isCustomDomain = process.env.GITHUB_PAGES_CUSTOM_DOMAIN === "true";
-
 export const staticPrefix = isGithubPages && !isCustomDomain
-  ? `/${process.env.GITHUB_REPOSITORY?.split("/")[1] ?? "portfolio_website"}`
-  : "";
-
+  ? `/${process.env.GITHUB_REPOSITORY?.split("/")[1] ?? "portfolio_website"}` : "";
 export const projectPagePath = (slug: string) => `${staticPrefix}/projects/${slug}${isGithubPages ? ".html" : ""}`;
-
 export const projectsIndexPath = `${staticPrefix}/projects.html`;
-
-export const homePagePath = isGithubPages
-  ? `${staticPrefix}/index.html`
-  : "/";
+export const homePagePath = isGithubPages ? `${staticPrefix}/index.html` : "/";
 
 export const featured: Project[] = [
   {
     slug: "appointment-booking-board",
     title: "Appointment Booking Board",
-    description: "A responsive scheduling dashboard with weekly calendar navigation, customer and service views, conflict checks, and appointment status controls.",
-    tags: "Next.js, TypeScript, Scheduling, Product design",
+    description: "A scheduling workspace for appointments, customer records, service pricing, and a clear view of daily capacity.",
+    tags: "Scheduling, Customer management, Service businesses",
     liveUrl: "https://booking.dimitar-shopov.dev",
-    imageUrl: "/appointment-booking-board.png",
+    imageUrl: "/project-guides/booking-overview.jpg",
     kicker: "Scheduling without the sticky notes",
-    about: "Appointment Booking Board gives a small service business one calm place to manage bookings, customers, services, and the details that make a day run on time.",
-    howItWorks: [
-      "The calendar view groups appointments by day and makes the current schedule easy to scan.",
-      "Customer and service records stay close to the booking, so pricing and contact details are not hidden in another tool.",
-      "Status controls and conflict checks make it clear what is confirmed, completed, or still needs attention.",
+    about: "One place to plan appointments, keep customer details close, and see how much room is left in the day. Built for small service businesses that need a clear schedule without a complicated management system.",
+    audience: "Consultants, independent professionals, and small appointment-based teams.",
+    purpose: "Phone calls, paper notes, and separate price lists make it easy to lose track of a booking. This board brings the customer, service, team member, time, and price together. You can review the week, look further ahead in the month, and update an appointment without rebuilding the schedule from scratch.",
+    demoNote: "The demo opens with sample appointments in September 2026. Start there to see a populated schedule. Changes are saved in this browser, survive refreshes, and are separate from other visitors. Clearing browser data removes them; Settings includes a demo reset.",
+    walkthrough: [
+      {
+        title: "Understand the week before adding more work",
+        description: "Overview combines the weekly schedule with booking, customer, revenue, and daily-limit summaries. Each day shows its appointment count against your chosen capacity, so a quiet day and a busy one are easy to tell apart.",
+        steps: [
+          "Use the arrows beside the date range to move between weeks. Today takes you to the current week, which may differ from the sample week.",
+          "Read the capacity indicator: green means available, yellow means nearly full, and red means the daily limit has been reached.",
+          "Select an appointment to inspect its details, edit or delete it, or update its status. Settings lets you change the daily limit from the default of six.",
+        ],
+        image: "/project-guides/booking-overview.jpg",
+        caption: "The weekly overview keeps appointments and daily capacity together.",
+      },
+      {
+        title: "Plan further ahead with the month view",
+        description: "Calendar spreads the schedule across an entire month. It helps when someone asks for a date several weeks away or you want to compare workload across days without stepping through each week.",
+        steps: [
+          "Choose Calendar in the navigation, then use its month arrows to find the period you need.",
+          "Review the dates, appointment times, and capacity indicators. Click a booking to open the same details available from Overview.",
+          "Import Google Calendar accepts an exported .ics calendar file. It copies events into the demo; it is a file import rather than an ongoing connection to Google.",
+        ],
+        image: "/project-guides/booking-calendar.jpg",
+        caption: "Calendar shows a month of bookings and provides the calendar-file import control.",
+      },
+      {
+        title: "Create a booking with the right service and price",
+        description: "New booking collects the information needed to deliver the appointment: customer contact details, service, team member, date, start time, duration, price, and notes. Keeping these fields in one form reduces the need to look elsewhere during a call.",
+        steps: [
+          "Click New booking and enter sample customer details. Choose the service and the team member responsible for it.",
+          "Selecting a service fills its price automatically. You can still change it for an agreed discount or a custom appointment.",
+          "Choose the date, start, and duration, then create the booking. Overlapping appointments for the same team member are blocked; choose another time or team member if there is a conflict.",
+        ],
+        image: "/project-guides/booking-create.jpg",
+        caption: "The booking form brings contact, scheduling, and pricing details into one place.",
+      },
+      {
+        title: "Keep customer records and services organised",
+        description: "Customers brings together contact details, booking counts, the last appointment, and its status. An archive keeps inactive customer records in a separate list on the same page instead of mixing them into the active list.",
+        steps: [
+          "Open Customers to review contacts created from appointments. Archive an inactive customer or restore one from Customer archive.",
+          "Open Services to review appointment types, durations, and prices, or add a service with its own description.",
+          "Remove a service when it is no longer offered. Existing appointments keep their service name so their history remains understandable.",
+        ],
+        image: "/project-guides/booking-customers.jpg",
+        caption: "Customer records show contact details and appointment history, with an archive below the active list.",
+      },
     ],
-    howToUse: [
-      "Open the calendar and move through the week to find an open slot.",
-      "Create a booking, choose a customer and service, then adjust the price or notes if needed.",
-      "Use the customer and service pages to keep the demo data tidy as the business grows.",
+    exercise: "Create a sample service with a different price, book it in a free slot, and check that the price fills automatically. Edit the appointment, then refresh the page to see your saved changes.",
+    technical: [
+      { label: "Languages & interface", detail: "TypeScript and React, with a Vinext app structure, Tailwind CSS, Base UI components, and Lucide icons." },
+      { label: "Scheduling tools", detail: "date-fns handles date display and calendar navigation. Booking checks compare time ranges for the same team member and day." },
+      { label: "Storage & backend", detail: "This demo stores appointments, services, customer archives, and the daily limit in browser localStorage. It does not use a shared booking database or synchronise changes between devices." },
+      { label: "Hosting & import", detail: "Published on Netlify. Calendar events are read from an uploaded .ics file; there is no Google sign-in or automatic calendar sync." },
     ],
-    highlights: ["Weekly calendar", "Customer records", "Service pricing", "Browser persistence"],
   },
   {
     slug: "field-service-dispatch-board",
     title: "Field Service Dispatch Board",
-    description: "A dispatch workspace with live job lanes, technician assignments, status updates, and browser-persisted demo data.",
-    tags: "Next.js, TypeScript, Field operations, Product design",
+    description: "A field operations board that gives every job a clear owner, priority, and next step, from the first request to completion.",
+    tags: "Field operations, Job tracking, Team coordination",
     liveUrl: "https://dispatch-board.dimitar-shopov.dev",
+    imageUrl: "/project-guides/dispatch-board.jpg",
     kicker: "A clearer day for teams in the field",
-    about: "Field Service Dispatch Board is a live operations view for service teams coordinating jobs across multiple technicians. It keeps ownership, timing, and next actions visible without turning dispatch into spreadsheet maintenance.",
-    howItWorks: [
-      "Jobs move through four lanes: Unassigned, En route, On site, and Completed.",
-      "Each card keeps the customer, address, service, priority, timing, and technician together.",
-      "Search, filter, assignment, and status controls update the board immediately and keep demo changes in the browser.",
+    about: "A dispatch workspace for teams sending technicians to customer sites. It makes unassigned work, active visits, and completed jobs visible together so the dispatcher can decide what needs attention next.",
+    audience: "Repair, maintenance, installation, and other teams working at customer locations.",
+    purpose: "A busy field team needs more than a list of requests. Someone must know where each visit is happening, who owns it, how urgent it is, and whether work has started. Routeboard keeps those details on job cards and groups them by progress, reducing the need to piece together updates from separate messages.",
+    demoNote: "This is an interactive demo with sample jobs and technicians. Assignments and status changes illustrate a dispatch workflow; they do not notify real technicians or provide live vehicle tracking. Some directory and reporting figures are sample information.",
+    walkthrough: [
+      {
+        title: "Read the board from unassigned to completed",
+        description: "Dispatch divides work into four lanes: Unassigned, En route, On site, and Completed. Cards keep the customer, address, service, priority, scheduled time, duration, and notes beside the assigned technician.",
+        steps: [
+          "Start with Unassigned to find requests that still need an owner. Urgent and high-priority labels help you decide what to handle first.",
+          "Choose a technician from the selector on a card. Assigning an unassigned job moves it into En route.",
+          "Use the card’s arrow to advance the visit through On site and Completed. Lane counts and active-work totals update as the status changes.",
+          "Search by customer, address, service, or technician, and use the priority selector to narrow the board when the list grows.",
+        ],
+        image: "/project-guides/dispatch-board.jpg",
+        caption: "The dispatch board shows ownership and progress across four job lanes.",
+      },
+      {
+        title: "Turn a service request into a work order",
+        description: "New job gives the dispatcher a consistent way to record a request. The form includes the customer, service, site address, priority, scheduled time, duration, technician, and notes so the team can see the important details before a visit.",
+        steps: [
+          "Click New job, enter a sample customer and address, then select the service and its priority.",
+          "Set the scheduled time and estimated duration. Add a short note explaining the problem or any useful arrival instructions.",
+          "Choose a technician to dispatch the job immediately, or leave it unassigned so it stays in the waiting lane. Click Create work order to add it to the board.",
+        ],
+        image: "/project-guides/dispatch-create.jpg",
+        caption: "A work order collects the details a dispatcher needs to hand a job to the team.",
+      },
+      {
+        title: "Check the team and tune the workspace",
+        description: "The Technician directory provides a separate view of the sample team, including each person’s role, availability label, and workload figure. Other navigation views offer customer and job summaries without the full board.",
+        steps: [
+          "Open Technicians to compare the sample specialists and their availability before returning to Dispatch to make an assignment.",
+          "Open Customers to see accounts represented in the job list. Jobs and Reports provide compact summaries; they are not a full scheduling or analytics system.",
+          "Open Settings to choose a daily planning capacity, a default workspace view, and whether action confirmations appear. Save preferences to apply them.",
+        ],
+        image: "/project-guides/dispatch-team.jpg",
+        caption: "The technician directory separates team information from the day’s job board.",
+      },
     ],
-    howToUse: [
-      "Start in Dispatch and scan the lanes to see what needs ownership or attention.",
-      "Create a new work order, assign a technician, and use the arrow control as the job progresses.",
-      "Open Technicians, Customers, Jobs, or Reports for a more focused operational view.",
+    exercise: "Create a sample urgent repair and leave it unassigned. Find it using the priority selector, assign a technician, and move it through En route, On site, and Completed to see how the board responds.",
+    technical: [
+      { label: "Languages & interface", detail: "TypeScript and React, built with Vinext and Vite. Custom CSS defines the dispatch board, job cards, navigation, and responsive layouts." },
+      { label: "Application logic", detail: "React state manages job creation, technician assignments, status transitions, search, priority filtering, and workspace preferences." },
+      { label: "Storage & backend", detail: "The demo uses browser localStorage for jobs and saved preferences. There is no shared dispatch server, technician messaging service, GPS feed, or multi-user synchronisation." },
+      { label: "Hosting", detail: "Published on Netlify with a custom subdomain. The technician directory and some reporting indicators use seeded demonstration data." },
     ],
-    highlights: ["Live job lanes", "Technician assignment", "Priority filtering", "Local demo data"],
-  },
-  {
-    slug: "restaurant-reservation-manager",
-    title: "Restaurant Reservation Manager",
-    description: "A restaurant control board for reservations, guest status, table assignments, and a live floor plan.",
-    tags: "Next.js, TypeScript, Hospitality, Product design",
-    liveUrl: "https://reservation-manager.dimitar-shopov.dev",
-    kicker: "A calmer service before the doors open",
-    about: "Restaurant Reservation Manager brings bookings, guests, tables, and service notes into one practical control board for a busy hospitality team.",
-    howItWorks: [
-      "The overview shows the service at a glance, with reservations grouped by their current state.",
-      "Customer and reservation details stay connected to table assignments and arrival status.",
-      "The floor plan turns the dining room into an operational view instead of a separate mental checklist.",
-    ],
-    howToUse: [
-      "Open the reservation view to review today’s arrivals and find the next booking.",
-      "Select a reservation to check guest details, update its status, or assign a table.",
-      "Use the floor plan to understand the room and keep the front-of-house team aligned.",
-    ],
-    highlights: ["Reservation flow", "Guest status", "Table assignment", "Floor plan"],
   },
   {
     slug: "sora-sol-bansko",
     title: "Sora Sol Bansko",
-    description: "A hospitality website introducing a seasonal menu, intimate dining room, and Japanese-Bulgarian identity in Bansko.",
-    tags: "Web design, Hospitality, Responsive",
+    description: "A restaurant website with interactive table reservations, a staff service view, and an owner dashboard for guest and revenue insights.",
+    tags: "Hospitality, Table reservations, Guest experience",
     liveUrl: "https://sora-sol.dimitar-shopov.dev",
+    imageUrl: "/project-guides/sora-home.jpg",
     kicker: "Japanese soul. Bulgarian heart.",
-    about: "Sora Sol Bansko is a hospitality website designed to make a destination restaurant feel tangible before a guest arrives. It balances atmosphere, food, place, and practical visit information.",
-    howItWorks: [
-      "The opening section establishes the restaurant’s identity quickly, with a strong visual mood and clear invitation to explore.",
-      "Menu and venue content are organized into readable sections so guests can browse without digging through a brochure-like page.",
-      "Responsive layouts keep the experience considered on phones, where many visitors will discover the restaurant.",
+    about: "A restaurant experience that starts with the food and atmosphere, then lets you explore booking a table, running a service, and understanding returning guests. Three demo views connect the guest’s visit to the team behind it.",
+    audience: "Restaurant guests, front-of-house staff, and independent restaurant owners.",
+    purpose: "A restaurant website should help someone imagine the evening and make planning it straightforward. Sora & Sol introduces a Japanese-Bulgarian dining concept in Bansko, then connects that story to a visual reservation flow. The project also explores how staff handle arrivals and how an owner reviews completed visits.",
+    demoNote: "The reservation area is labelled Interactive demo. Use sample guest details: it does not contact a restaurant or send confirmation emails. Customer, Staff, and Owner are switchable demonstration views, not separate staff login accounts. Reservations are kept separate for each browser demo session.",
+    walkthrough: [
+      {
+        title: "Explore the restaurant before choosing a table",
+        description: "The opening page establishes the restaurant’s identity through its story, seasonal dishes, room photography, and Bansko setting. Opening and location information sits alongside the atmosphere so a visitor can move naturally from browsing to planning a meal.",
+        steps: [
+          "Use Our story, The menu, and The space in the navigation to jump to the relevant section.",
+          "Browse the featured dishes, descriptions, and prices, then explore the dining-room section to understand the setting on offer.",
+          "Choose Find your table or Come share our table to open the reservation experience.",
+        ],
+        image: "/project-guides/sora-home.jpg",
+        caption: "The homepage introduces the restaurant concept and gives guests a clear route to reservations.",
+      },
+      {
+        title: "Choose a date, a table, and an available time",
+        description: "The Customer view replaces an abstract booking form with a floor plan. Compare table locations, seating capacity, and remaining time slots before choosing where to sit. Availability reflects the selected date and party size.",
+        steps: [
+          "Select a future date and your party size. Filter the room by Window, Booth, or Kitchen if you have a preferred area.",
+          "Choose a table on the floor plan. Its panel shows a description, capacity, and available times. Unavailable slots are disabled, and the colour legend explains remaining availability.",
+          "Select a time, open the reservation form, and enter sample contact details. Reservations last two hours, and times are shown in Bansko local time.",
+        ],
+        image: "/project-guides/sora-reservations.jpg",
+        caption: "The customer view connects the floor plan to a selected table’s available reservation times.",
+      },
+      {
+        title: "Follow the same evening from the staff side",
+        description: "Staff reveals the reservation book for the selected date. Summary cards show reservations, expected guests, seated tables, and guests still to arrive. Each row keeps the time, guest, table, party size, and status together.",
+        steps: [
+          "Select Staff at the top of the reservation page and choose the service date you want to review.",
+          "Use search and the status filter to find a reservation. Open Details to inspect guest information and the available service controls.",
+          "Follow a sample booking through the service statuses. Completed visits and their recorded bills contribute to the owner’s insights.",
+        ],
+        image: "/project-guides/sora-staff.jpg",
+        caption: "The staff view turns the selected day’s reservations into an organised service list.",
+      },
+      {
+        title: "Understand visits, spending, and returning guests",
+        description: "Owner shifts the focus from today’s arrivals to completed visits. It combines guest totals, recorded revenue, average table bills, a recent-visits chart, and customer history to show what happens after a booking has been fulfilled.",
+        steps: [
+          "Switch to Owner and choose an analytics date range to review completed visits in that period.",
+          "Compare the summary figures with the guest chart. Revenue is based on recorded completed bills rather than future reservations or cancellations.",
+          "Browse Familiar faces and open View guest to explore individual history. Sample past visits give the dashboard useful examples to inspect.",
+        ],
+        image: "/project-guides/sora-owner.jpg",
+        caption: "Owner insights connect completed visits with recorded revenue and returning-guest history.",
+      },
     ],
-    howToUse: [
-      "Start with the story and atmosphere, then explore the seasonal menu.",
-      "Use the dining-room and visit information to decide when and how to plan a meal.",
-      "On smaller screens, scroll through the same story in a compact, touch-friendly layout.",
+    exercise: "Choose a future date in Customer view, find a table with an available time, and create a booking using sample details. Switch to Staff for the same date to find it, then explore Owner to compare the completed-visit insights.",
+    technical: [
+      { label: "Languages & interface", detail: "TypeScript, React, and Next.js. Tailwind CSS and UI components support the restaurant pages, reservation forms, floor plan, and dashboards." },
+      { label: "Server & validation", detail: "Next.js API routes handle reservation operations. Zod validates request data, and availability logic checks table capacity, time slots, and booking conflicts." },
+      { label: "Database & demo sessions", detail: "The Netlify deployment uses @netlify/database through a database adapter. A browser session cookie separates each visitor’s demo records; sample reservations and historical visits populate the views." },
+      { label: "Tools & hosting", detail: "Published on Netlify. date-fns supports date handling; Recharts supports charts. The role views demonstrate workflows without production staff authentication or outgoing confirmation email." },
     ],
-    highlights: ["Hospitality storytelling", "Seasonal menu", "Responsive design", "Bansko destination"],
   },
 ];
 

@@ -3,7 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import ContactPrompt from "./ContactPrompt";
 import InlineContactForm from "./InlineContactForm";
-import { projectPagePath, projectsIndexPath, staticPrefix } from "./projects/projectData";
+import { featured, projectPagePath, projectsIndexPath, staticPrefix } from "./projects/projectData";
 import "./featured-project.css";
 
 const projectsPath = projectsIndexPath;
@@ -54,10 +54,15 @@ export default function HomePage() {
       <p className="section-label"><span /> Selected work</p>
       <div className="section-heading"><h2>Things I’ve <em>made work.</em></h2><p>A few examples of micro apps, internal tools, and practical software fixes designed around real business needs.</p><a className="acid-button" href={projectsPath}>See all projects <span>→</span></a></div>
       <div className="work-cards">
-        <article className="featured-project"><a className="work-preview dispatch-project" href={projectPagePath("field-service-dispatch-board")} aria-label="Read the Field Service Dispatch Board case study"><div className="dispatch-host"><span>ROUTEBOARD</span><b>Today’s field team</b><div className="dispatch-lanes"><i/><i/><i/></div><small>6 jobs · 4 techs</small></div><span className="project-open">Read case study ↗</span></a><h3>Field Service Dispatch Board</h3><p><b>Problem:</b> Field teams need one clear view of jobs, technicians, and what happens next.<br/><b>Result:</b> A dispatch workspace with live job lanes, assignment controls, status updates, and browser-persisted demo data.</p><ul><li>Next.js</li><li>TypeScript</li><li>Operations</li></ul><a className="project-repo-link" href={projectPagePath("field-service-dispatch-board")}>Read the case study <span>↗</span></a></article>
-        <article className="featured-project"><a className="work-preview restaurant-project" href={projectPagePath("restaurant-reservation-manager")} aria-label="Read the Restaurant Reservation Manager case study"><div className="restaurant-host"><span>TABLEAU</span><b>Today’s service</b><div><i/><i/><i/><i/></div></div><span className="project-open">Read case study ↗</span></a><h3>Restaurant Reservation Manager</h3><p><b>Problem:</b> Busy service teams need a clear view of bookings, guests, and tables.<br/><b>Result:</b> A restaurant control board for reservations, guest status, table assignments, and a live floor plan.</p><ul><li>Next.js</li><li>TypeScript</li><li>Hospitality</li></ul><a className="project-repo-link" href={projectPagePath("restaurant-reservation-manager")}>Read the case study <span>↗</span></a></article>
-        <article className="featured-project"><a className="work-preview project-image" href={projectPagePath("appointment-booking-board")} aria-label="Read the Appointment Booking Board case study"><Image src={publicAsset("/appointment-booking-board.png")} alt="Appointment Booking Board dashboard preview" fill sizes="(max-width: 760px) 100vw, 33vw"/><span className="project-open">Read case study ↗</span></a><h3>Appointment Booking Board</h3><p><b>Problem:</b> Appointments were being managed through phone calls and paper notes.<br/><b>Result:</b> A responsive scheduling dashboard with weekly navigation, customer and service views, conflict checks, and booking status controls.</p><ul><li>Next.js</li><li>TypeScript</li><li>Scheduling</li></ul><a className="project-repo-link" href={projectPagePath("appointment-booking-board")}>Read the case study <span>↗</span></a></article>
-        <article className="featured-project"><a className="work-preview sora-project" href={projectPagePath("sora-sol-bansko")} aria-label="Read the Sora Sol Bansko case study"><div className="sora-host"><span>SORA &amp; SOL</span><b>Japanese soul.<br/>Bulgarian heart.</b><div className="sora-details"><i/><i/><i/></div><small>Bansko · dining room</small></div><span className="project-open">Read case study ↗</span></a><h3>Sora Sol Bansko</h3><p><b>Problem:</b> A destination restaurant needs a warm digital front door that feels as considered as the dining experience.<br/><b>Result:</b> A hospitality website introducing the seasonal menu, dining room, and Japanese-Bulgarian identity in Bansko.</p><ul><li>Web design</li><li>Hospitality</li><li>Responsive</li></ul><a className="project-repo-link" href={projectPagePath("sora-sol-bansko")}>Read the case study <span>↗</span></a></article>
+        {featured.map((project) => <article className="featured-project" key={project.slug}>
+          <a className="work-preview project-image" href={projectPagePath(project.slug)} aria-label={`Read the ${project.title} case study`}>
+            <Image src={publicAsset(project.imageUrl)} alt={`${project.title} live project screenshot`} fill sizes="(max-width: 760px) 100vw, 33vw" />
+            <span className="project-open">Read case study ↗</span>
+          </a>
+          <h3>{project.title}</h3><p>{project.description}</p>
+          <ul>{project.tags.split(",").map((tag) => <li key={tag}>{tag.trim()}</li>)}</ul>
+          <a className="project-repo-link" href={projectPagePath(project.slug)}>Read the case study <span>↗</span></a>
+        </article>)}
       </div>
     </section>
 
